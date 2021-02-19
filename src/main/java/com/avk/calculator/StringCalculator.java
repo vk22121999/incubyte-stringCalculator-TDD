@@ -9,6 +9,19 @@ public class StringCalculator {
         {
             return 0;
         }
-        return -1;
+        if(s.length()==1)
+        {
+            Integer i = Integer.parseInt(s);
+            return i;
+        }
+        else
+        {
+            String[] splits = s.split(",");
+            return Integer.parseInt(splits[0])+Integer.parseInt(splits[1]);
+        }
+
+
     }
+
+
 }
