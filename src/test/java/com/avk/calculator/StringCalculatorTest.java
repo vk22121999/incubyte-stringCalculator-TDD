@@ -104,4 +104,16 @@ public class StringCalculatorTest {
         assertEquals(expected,result);
     }
 
+    @Test
+    public void ShouldReturn_Sum_of_number_with_delimiter_length_more_than_one()
+
+    {
+        int expected = 35;
+
+        int result = calculator.add("//[;;;]\n14;;;12\n9");
+
+        assertEquals(expected,result);
+    }
+
+
 }

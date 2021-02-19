@@ -1,5 +1,7 @@
 package com.avk.calculator;
 
+import java.util.ArrayList;
+
 public class StringCalculator {
 
     boolean isNegativeFound = false;
@@ -11,22 +13,25 @@ public class StringCalculator {
         }
         else
         {
-            String delimiter = finddelimiter(s);
+            ArrayList<String> delimiter = finddelimiter(s);
             s = processString(s);
             int sum = 0;
 
-            String[] splits = s.split(delimiter);
+            ArrayList<String> splits = split(delimiter,s);
+           // System.out.println(s);
+            //System.out.println(splits);
 
             for (String i:
                         splits
                      ) {
-                    String[] innerSplit = i.split("\n");
-                    if(innerSplit.length>1)
-                    {
-                        sum += toNumber(innerSplit[0])+toNumber(innerSplit[1]);
-                    }
-                    else
+                String[] innerSplit = i.split("\n");
+                if(innerSplit.length>1)
+                {
+                    sum += toNumber(innerSplit[0])+toNumber(innerSplit[1]);
+                }
+                else
                     sum += toNumber(i);
+
                 }
             if(isNegativeFound)
             {
@@ -40,20 +45,83 @@ public class StringCalculator {
 
     }
 
-    public String finddelimiter(String s)
+    private ArrayList<String> split(ArrayList<String> delimiter,String s)
     {
-        String delimiter = ",";
+        ArrayList<String> splits = new ArrayList<>();
+        String tempstr = "";
+        int skip = 1;
+        for (int i = 0; i < s.length(); i+=skip){
+
+            boolean notFound = true;
+            for(String k:delimiter)
+            {
+                if(k.charAt(0)==s.charAt(i))
+                {
+                    notFound = false;
+                    skip = k.length();
+                    break;
+                }
+
+            }
+            if(notFound)
+            {
+                skip = 1;
+                tempstr += s.charAt(i);
+            }
+            else
+            {
+                splits.add(tempstr);
+                tempstr = "";
+            }
+
+
+        }
+        splits.add(tempstr);
+
+        return splits;
+    }
+    private ArrayList<String> finddelimiter(String s)
+    {
+        ArrayList <String> delimiter = new ArrayList<>();
+
         if(isDelimiterGiven(s))
         {
 
-            delimiter = s.split("\n")[0];
-            delimiter = delimiter.substring(2);
+            s = s.split("\n")[0];
+            s = s.substring(2);
+            if(s.length()>1)
+            {
+                String tempStr = "";
+                for (int i = 0; i < s.length(); i++) {
+
+                    if(s.charAt(i)=='[')
+                    {
+                        continue;
+                    }
+                    if(s.charAt(i)==']') {
+                        delimiter.add(tempStr);
+                        tempStr = "";
+                    }
+                    else
+                    tempStr += s.charAt(i);
+                }
+            }
+            else
+            {
+                delimiter.add(s);
+            }
+
 
         }
+        else
+        {
+            delimiter.add(",");
+
+        }
+
         return delimiter;
     }
-
-    public String processString(String s)
+    private String processString(String s)
     {
         if(isDelimiterGiven(s)) {
 
@@ -70,7 +138,7 @@ public class StringCalculator {
         }
         return s;
     }
-    public boolean isDelimiterGiven(String s)
+    private boolean isDelimiterGiven(String s)
     {
         if(s.substring(0,2).compareTo("//")==0)
         {
@@ -79,7 +147,7 @@ public class StringCalculator {
         return false;
 
     }
-    public int toNumber(String s)
+    private int toNumber(String s)
     {
 
            int i = Integer.parseInt(s);
@@ -93,7 +161,5 @@ public class StringCalculator {
            return i;
 
     }
-
-
 
 }
