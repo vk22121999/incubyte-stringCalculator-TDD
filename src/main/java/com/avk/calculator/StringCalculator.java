@@ -10,6 +10,7 @@ public class StringCalculator {
         }
         else
         {
+            String delimiter = finddelimiter(s);
             int sum = 0;
 
             String[] splits = s.split(",");
@@ -34,6 +35,18 @@ public class StringCalculator {
 
     }
 
+    public String finddelimiter(String s)
+    {
+        String delimiter = "";
+        if(s.charAt(0)=='/'&&s.charAt(1)=='/')
+        {
+
+            delimiter = s.split("\n")[0];
+            delimiter = delimiter.substring(2);
+
+        }
+        return delimiter;
+    }
     public int toNumber(String s)
     {
         return Integer.parseInt(s);
