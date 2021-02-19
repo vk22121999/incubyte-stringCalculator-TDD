@@ -1,10 +1,8 @@
 package com.avk.calculator;
 
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.*;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,14 +10,14 @@ public class StringCalculatorTest {
 
     StringCalculator calculator = null;
 
-    @BeforeEach
+    @Before
     public void setUp()
     {
         calculator = new StringCalculator(); // setting up a new StringCalculator before each test
 
     }
 
-    @AfterEach
+    @After
     public void destroy()
     {
         calculator = null; // clearing the calculator after every test
@@ -83,6 +81,16 @@ public class StringCalculatorTest {
         int result = calculator.add("//;\n4;4;4;6;6");
 
         assertEquals(expected,result);
+
+    }
+
+    @Test(expected = Exception.class)
+    public void ShouldReturn_Exception_message_negative_numbers_in_string()
+    {
+
+            calculator.add("//-\n9-4-4--3");
+
+
 
     }
 

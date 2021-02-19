@@ -2,7 +2,8 @@ package com.avk.calculator;
 
 public class StringCalculator {
 
-
+    boolean isNegativeFound = false;
+    String errorString = "negatives not allowed - ";
     public int add(String s) {
 
         if(s.isEmpty()) {
@@ -11,17 +12,12 @@ public class StringCalculator {
         else
         {
             String delimiter = finddelimiter(s);
-
-            int sum = 0;
-
             s = processString(s);
-
-
+            int sum = 0;
 
             String[] splits = s.split(delimiter);
 
-
-                for (String i:
+            for (String i:
                         splits
                      ) {
                     String[] innerSplit = i.split("\n");
@@ -32,11 +28,15 @@ public class StringCalculator {
                     else
                     sum += toNumber(i);
                 }
+            if(isNegativeFound)
+            {
+
+                throw new UnsupportedOperationException(errorString.substring(0,errorString.length()-2));
+            }
+
                 return sum;
 
-
         }
-
 
     }
 
@@ -81,7 +81,15 @@ public class StringCalculator {
     }
     public int toNumber(String s)
     {
-        return Integer.parseInt(s);
+
+           int i = Integer.parseInt(s);
+           if(i<0)
+           {    isNegativeFound = true;
+                errorString += s +", ";
+           }
+
+           return i;
+
     }
 
 
