@@ -87,6 +87,8 @@ public class StringCalculator {
            {    isNegativeFound = true;
                 errorString += s +", ";
            }
+          else if(i>1000)
+               i = 0;
 
            return i;
 

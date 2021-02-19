@@ -94,4 +94,14 @@ public class StringCalculatorTest {
 
     }
 
+    @Test
+    public void ShouldReturn_Sum_of_number_less_than_1000_only_in_string()
+    {
+        int expected = 15;
+
+        int result = calculator.add("///\n2/8/1001/5");
+
+        assertEquals(expected,result);
+    }
+
 }
