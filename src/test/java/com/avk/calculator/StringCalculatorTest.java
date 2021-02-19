@@ -35,21 +35,23 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void ShouleBe_the_only_number_in_StringWithonly_one_number()
+    public void ShouldBe_the_only_number_in_StringWithonly_one_number()
     {
-        int expected = 1;
+        int expected = 127;
 
-        int result = calculator.add("1");
+        int result = calculator.add("127");
 
         assertEquals(expected,result);
     }
 
     @Test
-    public void ShoulsReturn_the_sum_of_two_number_in_a_String()
+    public void ShouldReturn_the_sum_of_two_number_in_a_String()
     {
-        int expected = 3;
-        int result = calculator.add("1,2");
+        int expected = 100;
+        int result = calculator.add("35,65");
 
         assertEquals(expected,result);
     }
+
+
 }

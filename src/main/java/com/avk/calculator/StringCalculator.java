@@ -16,8 +16,12 @@ public class StringCalculator {
         }
         else
         {
+
             String[] splits = s.split(",");
-            return Integer.parseInt(splits[0])+Integer.parseInt(splits[1]);
+            if(splits.length>1)
+                return Integer.parseInt(splits[0])+Integer.parseInt(splits[1]);
+            else
+                return Integer.parseInt(s);
         }
 
 
