@@ -18,8 +18,6 @@ public class StringCalculator {
             int sum = 0;
 
             ArrayList<String> splits = split(delimiter,s);
-           // System.out.println(s);
-            //System.out.println(splits);
 
             for (String i:
                         splits
@@ -45,7 +43,7 @@ public class StringCalculator {
 
     }
 
-    private ArrayList<String> split(ArrayList<String> delimiter,String s)
+    private ArrayList<String> split(ArrayList<String> delimiter,String s) // splitting the numbers from the string
     {
         ArrayList<String> splits = new ArrayList<>();
         String tempstr = "";
@@ -80,7 +78,7 @@ public class StringCalculator {
 
         return splits;
     }
-    private ArrayList<String> finddelimiter(String s)
+    private ArrayList<String> finddelimiter(String s)           //  finding all the delimiters in the String
     {
         ArrayList <String> delimiter = new ArrayList<>();
 
@@ -147,7 +145,7 @@ public class StringCalculator {
         return false;
 
     }
-    private int toNumber(String s)
+    private int toNumber(String s)              // convert a string into number
     {
 
            int i = Integer.parseInt(s);

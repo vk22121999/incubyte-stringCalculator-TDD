@@ -115,5 +115,15 @@ public class StringCalculatorTest {
         assertEquals(expected,result);
     }
 
+    @Test
+    public void ShouldReturn_Sum_of_number_with_multiple_delimiter_length_more_than_one()
+    {
+        int expected = 75;
+
+        int result = calculator.add("//[;;;][+++]\n25+++15;;;10\n25");
+
+        assertEquals(expected,result);
+    }
+
 
 }
