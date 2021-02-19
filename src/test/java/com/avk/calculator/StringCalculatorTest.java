@@ -53,5 +53,15 @@ public class StringCalculatorTest {
         assertEquals(expected,result);
     }
 
+    @Test
+    public void SholudReturn_the_sum_of_all_the_numbers_in_a_String()
+    {
+        int expected = 1500;
+
+        int result = calculator.add("500,100,100,100,100,600");
+
+        assertEquals(expected,result);
+    }
+
 
 }

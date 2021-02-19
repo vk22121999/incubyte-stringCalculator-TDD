@@ -10,12 +10,20 @@ public class StringCalculator {
         }
         else
         {
+            int sum = 0;
 
             String[] splits = s.split(",");
-            if(splits.length>1)
-                return toNumber(splits[0])+toNumber(splits[1]);
-            else
-                return toNumber(s);
+
+
+                for (String i:
+                        splits
+                     ) {
+
+                    sum += toNumber(i);
+                }
+                return sum;
+
+
         }
 
 
