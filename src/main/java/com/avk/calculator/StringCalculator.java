@@ -11,9 +11,14 @@ public class StringCalculator {
         else
         {
             String delimiter = finddelimiter(s);
+
             int sum = 0;
 
-            String[] splits = s.split(",");
+            s = processString(s);
+
+
+
+            String[] splits = s.split(delimiter);
 
 
                 for (String i:
@@ -37,8 +42,8 @@ public class StringCalculator {
 
     public String finddelimiter(String s)
     {
-        String delimiter = "";
-        if(s.charAt(0)=='/'&&s.charAt(1)=='/')
+        String delimiter = ",";
+        if(isDelimiterGiven(s))
         {
 
             delimiter = s.split("\n")[0];
@@ -47,10 +52,38 @@ public class StringCalculator {
         }
         return delimiter;
     }
+
+    public String processString(String s)
+    {
+        if(isDelimiterGiven(s)) {
+
+            int index;
+            for (index = 2; index < s.length(); index++) {
+
+             if(s.charAt(index)=='\n')
+             {
+                 break;
+             }
+            }
+
+            return s.substring(index+1);
+        }
+        return s;
+    }
+    public boolean isDelimiterGiven(String s)
+    {
+        if(s.substring(0,2).compareTo("//")==0)
+        {
+            return  true;
+        }
+        return false;
+
+    }
     public int toNumber(String s)
     {
         return Integer.parseInt(s);
     }
+
 
 
 }

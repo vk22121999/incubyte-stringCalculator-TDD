@@ -75,5 +75,15 @@ public class StringCalculatorTest {
         assertEquals(expected,result);
     }
 
+    @Test
+    public void ShouldReturn_the_sum_of_number_separated_by_given_delimiter()
+    {
+        int expected = 24;
+
+        int result = calculator.add("//;\n4;4;4;6;6");
+
+        assertEquals(expected,result);
+
+    }
 
 }
