@@ -3,6 +3,7 @@ package com.avk.calculator;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,6 +60,17 @@ public class StringCalculatorTest {
         int expected = 1500;
 
         int result = calculator.add("500,100,100,100,100,600");
+
+        assertEquals(expected,result);
+    }
+
+    @Test
+    @DisplayName("Number in newline is also considered in this test case")
+    public void ShouldReturn_the_sum_of_numbers_in_newLine_String()
+    {
+        int expected = 6;
+
+        int result = calculator.add("1\n2,3");
 
         assertEquals(expected,result);
     }

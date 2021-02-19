@@ -18,7 +18,12 @@ public class StringCalculator {
                 for (String i:
                         splits
                      ) {
-
+                    String[] innerSplit = i.split("\n");
+                    if(innerSplit.length>1)
+                    {
+                        sum += toNumber(innerSplit[0])+toNumber(innerSplit[1]);
+                    }
+                    else
                     sum += toNumber(i);
                 }
                 return sum;
