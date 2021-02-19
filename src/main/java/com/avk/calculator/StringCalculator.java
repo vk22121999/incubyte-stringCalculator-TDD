@@ -5,26 +5,25 @@ public class StringCalculator {
 
     public int add(String s) {
 
-        if(s.isEmpty())
-        {
+        if(s.isEmpty()) {
             return 0;
-        }
-        if(s.length()==1)
-        {
-            Integer i = Integer.parseInt(s);
-            return i;
         }
         else
         {
 
             String[] splits = s.split(",");
             if(splits.length>1)
-                return Integer.parseInt(splits[0])+Integer.parseInt(splits[1]);
+                return toNumber(splits[0])+toNumber(splits[1]);
             else
-                return Integer.parseInt(s);
+                return toNumber(s);
         }
 
 
+    }
+
+    public int toNumber(String s)
+    {
+        return Integer.parseInt(s);
     }
 
 
