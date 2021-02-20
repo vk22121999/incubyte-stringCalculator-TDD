@@ -47,35 +47,32 @@ public class StringCalculator {
     {
         ArrayList<String> splits = new ArrayList<>();
         String tempstr = "";
-        int skip = 1;
-        for (int i = 0; i < s.length(); i+=skip){
-
-            boolean notFound = true;
-            for(String k:delimiter)
+        int skip = 1;boolean notFound = true;
+        for (int i = 0; i < s.length(); i+=skip) {
+            notFound = true;
+            for(String k: delimiter)
             {
-                if(k.charAt(0)==s.charAt(i))
+                if(i+k.length() <= s.length() && k.compareTo(s.substring(i,i+k.length()))==0)
                 {
-                    notFound = false;
                     skip = k.length();
+                    notFound = false;
                     break;
+
                 }
 
             }
-            if(notFound)
-            {
-                skip = 1;
-                tempstr += s.charAt(i);
-            }
-            else
-            {
-                splits.add(tempstr);
-                tempstr = "";
-            }
 
+            if (notFound) {
+                  skip = 1;
+                  tempstr += s.charAt(i);
 
+            } else {
+
+                    splits.add(tempstr);
+                    tempstr = "";
+                }
         }
         splits.add(tempstr);
-
         return splits;
     }
     private ArrayList<String> finddelimiter(String s)           //  finding all the delimiters in the String
