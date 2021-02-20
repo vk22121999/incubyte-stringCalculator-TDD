@@ -17,20 +17,9 @@ public class StringCalculator {
             s = processString(s);
             int sum = 0;
 
-            ArrayList<String> splits = split(delimiter,s);
+            sum = splitAndadd(delimiter,s);
 
-            for (String i:
-                        splits
-                     ) {
-                String[] innerSplit = i.split("\n");
-                if(innerSplit.length>1)
-                {
-                    sum += toNumber(innerSplit[0])+toNumber(innerSplit[1]);
-                }
-                else
-                    sum += toNumber(i);
 
-                }
             if(isNegativeFound)
             {
 
@@ -43,11 +32,11 @@ public class StringCalculator {
 
     }
 
-    private ArrayList<String> split(ArrayList<String> delimiter,String s) // splitting the numbers from the string
+    private int splitAndadd(ArrayList<String> delimiter,String s) // splitting the numbers from the string
     {
-        ArrayList<String> splits = new ArrayList<>();
+
         String tempstr = "";
-        int skip = 1;boolean notFound = true;
+        int skip = 1,sum = 0;boolean notFound = true;
         for (int i = 0; i < s.length(); i+=skip) {
             notFound = true;
             for(String k: delimiter)
@@ -66,14 +55,29 @@ public class StringCalculator {
                   skip = 1;
                   tempstr += s.charAt(i);
 
-            } else {
+            }
+            else {
 
-                    splits.add(tempstr);
-                    tempstr = "";
+                sum += ProcessnumberString(tempstr);
+                tempstr = "";
                 }
         }
-        splits.add(tempstr);
-        return splits;
+        sum += ProcessnumberString(tempstr);
+
+        return sum;
+    }
+    private int ProcessnumberString (String s)
+    {
+        int sum = 0;
+        String[] innerSplit = s.split("\n");
+        if(innerSplit.length>1)
+        {
+            sum += toNumber(innerSplit[0])+toNumber(innerSplit[1]);
+        }
+        else
+            sum += toNumber(s);
+
+        return sum;
     }
     private ArrayList<String> finddelimiter(String s)           //  finding all the delimiters in the String
     {
